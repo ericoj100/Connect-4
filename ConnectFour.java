@@ -4,7 +4,9 @@ public class ConnectFour{
     private int[] tracker;
     private int[] header;
 
-    //
+    /**
+     * Initializes board with 6 rows and 7 columns 
+     *  */ 
     public ConnectFour() {
         board = new String[6][7]; 
         turn = "X"; 
@@ -12,7 +14,9 @@ public class ConnectFour{
         header = new int[] {1, 2, 3, 4, 5, 6, 7};
     }
 
-    //
+    /**
+     * Sets board for start of game 
+     */
     public void reset() {
         for (int r = 0; r < board.length; r++){
             for(int c = 0; c < board[0].length; c++){
@@ -21,6 +25,9 @@ public class ConnectFour{
         } 
     } 
 
+    /** 
+     * Prints formatted baord 
+     */
     public void  printBoard() {
         for(int i = 0; i <header.length; i++){
                 System.out.print(header[i] + "   ");
@@ -34,6 +41,9 @@ public class ConnectFour{
         }
     }
 
+    /**
+     * Sets the lowest non-filled coordinate in the specified column with X or O
+     */
     public void set(int c){
         if (isValid(c)) {
             board[(board.length - 1) - tracker[c - 1]][c - 1] = getTurn();
@@ -46,11 +56,17 @@ public class ConnectFour{
         } 
     }
 
+
+    /**
+     * Returns which turn (X or O)
+     */
     public String getTurn() {
         return turn; 
     };
 
-    // Checks if coordinate is valid 
+    /**
+     * Returns true if a column is valid for user input, returns false otherwise
+     */
     public boolean isValid(int c) {
         if ((c > (board[0].length) || c < 1)) {
             return false;
@@ -60,7 +76,9 @@ public class ConnectFour{
         return true;
     }
 
-    // Is this coordinate on the board 
+    /**
+     * Returns true if coordinate is on the board, returns false otherwise 
+     *  */ 
     public boolean isOnBoard(int r, int c) {
         if ((c > (board[0].length) || c < 0)) {
             //System.out.println("THIS IS THE COLUMN NOT FOUND:" + c);
@@ -72,6 +90,10 @@ public class ConnectFour{
         return true;
     }
 
+
+    /**
+     * Returns true if there is a winning combinations (four-in-a-row), returns false otherwise 
+     */
     public boolean isWon(){
         int count = 1;
         // Search four-in-a-row in rows
